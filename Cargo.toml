@@ -4,6 +4,8 @@ name = "binary-search"
 version = "1.3.0"
 
 [dependencies]
+criterion = "0.3"
+rand = "0.8"
 
 [features]
 generic = []
