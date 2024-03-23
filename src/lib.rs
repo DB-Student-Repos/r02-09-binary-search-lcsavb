@@ -1,9 +1,22 @@
 pub fn find(array: &[i32], key: i32) -> Option<usize> {
+    
+    if array.is_empty() {
+        return None;
+    }
+
+
     let middle_index = array.len() / 2;
-        
+       
     if key == array[middle_index] {
         return Some(middle_index);
+    } else if key == array[0] {
+        return Some(0);
+    } else if key == array[array.len() - 1] {
+        return Some(array.len() - 1);
+    } else if key < array[0] || key > array[array.len() - 1] {
+        return None;
     }
+
 
     let (left_array, right_array) = array.split_at(middle_index);
 
