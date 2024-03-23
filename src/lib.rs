@@ -1,36 +1,28 @@
 pub fn find(array: &[i32], key: i32) -> Option<usize> {
-    
     if array.is_empty() {
         return None;
     }
 
+    let mut left = 0;
+    let mut right = array.len() - 1;
 
-    let middle_index = array.len() / 2;
-       
-    if key == array[middle_index] {
-        return Some(middle_index);
-    } else if key == array[0] {
-        return Some(0);
-    } else if key == array[array.len() - 1] {
-        return Some(array.len() - 1);
-    } else if key < array[0] || key > array[array.len() - 1] {
-        return None;
+    while left <= right {
+        let middle = left + (right - left) / 2;
+
+        if array[middle] == key {
+            return Some(middle);
+        } else if array[middle] < key {
+            left = middle + 1;
+        } else {
+            if middle == 0 {
+                return None; 
+            }
+            right = middle - 1;
+        }
     }
 
-
-    let (left_array, right_array) = array.split_at(middle_index);
-
-    let left_array_cut = left_array[left_array.len() - 1];
-    let right_array_cut = right_array[0];
-
-    if key > left_array_cut {
-        return find(right_array, key)
-    } else {
-        return find(left_array, key)
-    }
-    
     None
-} 
+}
 
 // I am going think how to solve the errors:
 // failures:
